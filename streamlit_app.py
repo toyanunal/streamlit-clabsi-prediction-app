@@ -155,13 +155,13 @@ def main():
 
     input_df = get_user_input()
 
-    model = xgb.XGBRegressor()
-    with open("XGBoost.sav", 'rb') as f:
+    model = GradientBoostingClassifier()
+    with open("GB.sav", 'rb') as f:
         model = pkl.load(f)
 
     if st.button("Tahminle"):
         output = predict(model, input_df)
-        st.info(f'Hastanın hastanede yatış süresi tahmini {output[0]:.0f} gündür.')
+        st.info(f'Hastada KİKDE gelişimi ihtimali eşik değerden {output[0]:.0f}.')
 
 if __name__ == '__main__':
     main()
