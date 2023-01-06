@@ -7,12 +7,12 @@ from PIL import Image
 
 # Function for user input
 def get_user_input():
-    week = st.slider('Gestasyonel yaş (hafta):', min_value=21, max_value=45, value=33, step=1)
+    week = st.slider('Kateter takıldığındaki düzeltilmiş yaş (hafta):', min_value=21, max_value=45, value=33, step=1)
     #week = st.number_input('Gestasyonel yaş (hafta):', min_value=21, max_value=45, value=30, step=1)
-    day = st.slider('Gestasyonel yaş (gün):', min_value=0, max_value=6, value=3, step=1)
+    day = st.slider('Kateter takıldığındaki düzeltilmiş yaş (gün):', min_value=0, max_value=6, value=3, step=1)
     day = int(day)
     age = week + day/7
-    age = (age - 34.44) / 3.70 # normalization by mean=34.44 and std=3.70
+    age = (age - 33.48) / 3.96 # normalization by mean=33.48 and std=3.96
 
     weight = st.radio('Doğum ağırlığı (kategorik):', ['≤1000 gr','1001-1500 gr','1501-2500 gr','>2500 gr'])
     if weight == '≤1000 gr':
@@ -23,6 +23,8 @@ def get_user_input():
         weight = 3
     elif weight == '>2500 gr':
         weight = 4
+    
+    week = st.radio('Gestasyonel yaş (kategorik)')
     
     birth = st.radio('Doğum şekli:', ['C/S','NSVY'])
     if birth == 'C/S':
@@ -59,6 +61,12 @@ def get_user_input():
         uak = 0
     else:
         uak = 1
+    
+    uvk = st.radio('UVK:', ['Yok','Var'])
+    if uvk == 'Yok':
+        uvk = 0
+    else:
+        uvk = 1
 
     ventilation = st.radio('Ventilasyon tipi:', ['Yok','NIV','iMV'])
     if ventilation == 'Yok':
