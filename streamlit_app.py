@@ -23,9 +23,7 @@ def get_user_input():
         weight = 3
     elif weight == '>2500 gr':
         weight = 4
-    
-    week = st.radio('Gestasyonel yaş (kategorik)')
-    
+
     birth = st.radio('Doğum şekli:', ['C/S','NSVY'])
     if birth == 'C/S':
         birth = 1
